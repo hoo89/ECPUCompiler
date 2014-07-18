@@ -29,6 +29,7 @@ typedef struct Instruction {
 typedef struct Object
 {
 	unsigned char word[2];
+	struct Label *label;
 	char require_w2;
 	int line_num;
 } OB;
@@ -36,11 +37,6 @@ typedef struct Object
 struct Label {
 	char name[MAXSTRLEN];
 	unsigned char address;
-
-	// when undefined label referenced add refs
-	// when defined clear
-	OB *refs[MAXREFS];
-	int refs_len;
 };
 
 void yyerror(const char *s);
