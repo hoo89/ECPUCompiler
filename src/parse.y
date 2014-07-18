@@ -272,6 +272,13 @@ void add_object(OB ob){
 	}
 }
 
+void print_labels(){
+	int i;
+	for(i=0;i<ltable_len;i++){
+		printf("%s: %x\n", ltable[i].name, ltable[i].address);
+	}
+}
+
 void print_objects(void){
 	int i, a=0;
 	
