@@ -28,8 +28,7 @@ And more...
     実機のほうがしょぼいので無問題
   - 即値アドレスはすべて16進数でなければいけない(最後にHをつけること)
 * その他、バグが色々残っていると思われるのでバグつぶしに協力してくれる人募集中
-* $ ./bin/compiler -v input | output
-  $ echo | cat - input | paste output -
-  でレポート提出用のソースが出来上がる。
+* $ ./bin/compiler -v input | output; echo | cat - input | paste output -
+  でレポート提出用の出力が出来上がる。
 
 Author: hoo89(hoo89@me.com)
