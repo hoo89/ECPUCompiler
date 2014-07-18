@@ -7,11 +7,12 @@ CPU実験の教育用8bitCPUのアセンブラをコンパイルするための�
 
 How to build?
 ----------
-＄ make
+$ make
 
 How to use?
 ----------
-＄ cat inputfile | ./bin/compiler
+$ cat inputfile | ./bin/compiler
+$ ./bin/compiler inputfile
 
 今のところ、標準入力から読み込まれたアセンブラをコンパイルするだけです。
 そのうちオプションとかでファイルから読み込める普通のコンパイラっぽくなるかもしれません。
@@ -27,5 +28,8 @@ And more...
     実機のほうがしょぼいので無問題
   - 即値アドレスはすべて16進数でなければいけない(最後にHをつけること)
 * その他、バグが色々残っていると思われるのでバグつぶしに協力してくれる人募集中
+* $ ./bin/compiler -v input | output
+  $ echo | cat - input | paste output -
+  でレポート提出用のソースが出来上がる。
 
 Author: hoo89(hoo89@me.com)
