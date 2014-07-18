@@ -1,6 +1,8 @@
 What's this?
 ==========
-CPU実験のアセンブラをコンパイルするためのコンパイラです。
+ECPU = E(ducational) CPU
+
+CPU実験の教育用8bitCPUのアセンブラをコンパイルするためのコンパイラです。
 ハンドアセンブルが面倒くさいので作りました。
 
 How to build?
