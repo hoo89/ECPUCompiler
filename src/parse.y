@@ -83,7 +83,7 @@ static OB zero;
 %%
 
 /* program = {line|comment_line NEWLINE} EOF */
-program: TEOF {print_objects(); YYACCEPT;}
+program: TEOF {YYACCEPT;}
 	| line NEWLINE {add_object($1); line_num++;} program
 	| comment_line NEWLINE {line_num++;} program
 ;
@@ -249,30 +249,37 @@ void print_labels(){
 	}
 }
 
-void print_objects(void){
+void print_objects(int *opt){
 	int i, a=0;
+
+	if(opt[PRINT_HEADER]){
+		printf("Address\tObj. Code\tSource Code\n");
+	}
 	
 	for(i=0;i<objects_len;i++){
-		printf("%02x\t", a);
-		printf("%02x", objects[i].word[0]);
+		if(opt[PRINT_ADDRESS]){
+			printf("%02x\t", a);
+		}
+		if(opt[PRINT_OBJECT]){
+			printf("%02x", objects[i].word[0]);
+		}
 		a++;
 
 		if(objects[i].require_w2){
-			if(!objects[i].label){
-				printf(" %02x", objects[i].word[1]);
-			}else{
-				printf(" %02x", objects[i].label->address);
+			if(opt[PRINT_OBJECT]){
+				if(!objects[i].label){
+					printf(" %02x", objects[i].word[1]);
+				}else{
+					printf(" %02x", objects[i].label->address);
+				}
 			}
 			a++;
 		}
 
+		/*if(opt[PRINT_SOURCE]){
+
+		}*/
+
 		printf("\n");
 	}
-}
-
-int main(void)
-{
-    yyparse();
-
-    return 0;
 }

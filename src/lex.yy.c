@@ -551,11 +551,12 @@ char *yytext;
  *	Program:	Educational CPU assembly compiler
  *	File Name:	analizer.l
  *	Descrioption:	lexical analyzer using flex
+ * 	Author:		hoo89
  */
 #include <stdio.h>
 #include "parse.h"
 #include "parse.tab.h"
-#line 559 "lex.yy.c"
+#line 560 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -742,9 +743,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 70 "analize.l"
+#line 71 "analize.l"
 
-#line 748 "lex.yy.c"
+#line 749 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -829,14 +830,14 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 71 "analize.l"
+#line 72 "analize.l"
 {
 	return COMMENT;
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 76 "analize.l"
+#line 77 "analize.l"
 {
 	unsigned int a;
 	sscanf(yytext, "%xH", &a);
@@ -846,7 +847,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 83 "analize.l"
+#line 84 "analize.l"
 {
 	unsigned int a;
 	sscanf(yytext, "[%xH]", &a);
@@ -856,7 +857,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 90 "analize.l"
+#line 91 "analize.l"
 {
 	unsigned int a;
 	sscanf(yytext, "(%xH)", &a);
@@ -866,7 +867,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 97 "analize.l"
+#line 98 "analize.l"
 {
 	unsigned int a;
 	sscanf(yytext, "[IX+%xH]", &a);
@@ -876,7 +877,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 104 "analize.l"
+#line 105 "analize.l"
 {
 	unsigned int a;
 	sscanf(yytext, "(IX+%xH)", &a);
@@ -886,315 +887,315 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 111 "analize.l"
+#line 112 "analize.l"
 {
 	return ACC;
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 115 "analize.l"
+#line 116 "analize.l"
 {
 	return IX;
 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 119 "analize.l"
+#line 120 "analize.l"
 {
 	return NOP;
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 122 "analize.l"
+#line 123 "analize.l"
 {
 	return HLT;
 }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 125 "analize.l"
+#line 126 "analize.l"
 {
 	return OUT;
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 128 "analize.l"
+#line 129 "analize.l"
 {
 	return IN;
 }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 131 "analize.l"
+#line 132 "analize.l"
 {
 	return RCF;
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 134 "analize.l"
+#line 135 "analize.l"
 {
 	return SCF;
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 137 "analize.l"
+#line 138 "analize.l"
 {
 	return LD;
 }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 140 "analize.l"
+#line 141 "analize.l"
 {
 	return ST;
 }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 143 "analize.l"
+#line 144 "analize.l"
 {
 	return ADD;
 }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 146 "analize.l"
+#line 147 "analize.l"
 {
 	return ADC;
 }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 149 "analize.l"
+#line 150 "analize.l"
 {
 	return SUB;
 }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 152 "analize.l"
+#line 153 "analize.l"
 {
 	return SBC;
 }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 155 "analize.l"
+#line 156 "analize.l"
 {
 	return CMP;
 }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 158 "analize.l"
+#line 159 "analize.l"
 {
 	return AND;
 }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 161 "analize.l"
+#line 162 "analize.l"
 {
 	return OR;
 }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 164 "analize.l"
+#line 165 "analize.l"
 {
 	return EOR;
 }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 167 "analize.l"
+#line 168 "analize.l"
 {
 	return SRA;
 }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 170 "analize.l"
+#line 171 "analize.l"
 {
 	return SLA;
 }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 173 "analize.l"
+#line 174 "analize.l"
 {
 	return SRL;
 }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 176 "analize.l"
+#line 177 "analize.l"
 {
 	return SLL;
 }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 179 "analize.l"
+#line 180 "analize.l"
 {
 	return RRA;
 }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 182 "analize.l"
+#line 183 "analize.l"
 {
 	return RLA;
 }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 185 "analize.l"
+#line 186 "analize.l"
 {
 	return RRL;
 }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 188 "analize.l"
+#line 189 "analize.l"
 {
 	return RLL;
 }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 191 "analize.l"
+#line 192 "analize.l"
 {
 	return BA;
 }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 194 "analize.l"
+#line 195 "analize.l"
 {
 	return BVF;
 }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 197 "analize.l"
+#line 198 "analize.l"
 {
 	return BNZ;
 }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 200 "analize.l"
+#line 201 "analize.l"
 {
 	return BZ;
 }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 203 "analize.l"
+#line 204 "analize.l"
 {
 	return BZP;
 }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 206 "analize.l"
+#line 207 "analize.l"
 {
 	return BN;
 }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 209 "analize.l"
+#line 210 "analize.l"
 {
 	return BP;
 }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 212 "analize.l"
+#line 213 "analize.l"
 {
 	return BZN;
 }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 215 "analize.l"
+#line 216 "analize.l"
 {
 	return BNI;
 }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 218 "analize.l"
+#line 219 "analize.l"
 {
 	return BNO;
 }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 221 "analize.l"
+#line 222 "analize.l"
 {
 	return BNC;
 }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 224 "analize.l"
+#line 225 "analize.l"
 {
 	return BC;
 }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 227 "analize.l"
+#line 228 "analize.l"
 {
 	return BGE;
 }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 230 "analize.l"
+#line 231 "analize.l"
 {
 	return BLT;
 }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 233 "analize.l"
+#line 234 "analize.l"
 {
 	return BGT;
 }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 236 "analize.l"
+#line 237 "analize.l"
 {
 	return BLE;
 }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 239 "analize.l"
+#line 240 "analize.l"
 {
 	return JAL;
 }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 242 "analize.l"
+#line 243 "analize.l"
 {
 	return JR;
 }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 246 "analize.l"
+#line 247 "analize.l"
 {
 	sscanf(yytext, "%255[^:]", yylval.name);
 	return LABEL;
@@ -1202,7 +1203,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 250 "analize.l"
+#line 251 "analize.l"
 {
 	sscanf(yytext, "%255s", yylval.name);
 	return OP_LABEL;
@@ -1210,7 +1211,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 255 "analize.l"
+#line 256 "analize.l"
 {
 	return COMMA;
 }
@@ -1218,27 +1219,27 @@ YY_RULE_SETUP
 case 54:
 /* rule 54 can match eol */
 YY_RULE_SETUP
-#line 259 "analize.l"
+#line 260 "analize.l"
 {
 	return NEWLINE;
 }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 263 "analize.l"
+#line 264 "analize.l"
 {
 	return SPACE;
 }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 267 "analize.l"
+#line 268 "analize.l"
 {
 	return TEOF;
 }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 271 "analize.l"
+#line 272 "analize.l"
 {
 	yyerror("Illegal character");
 	printf("\t%s\n", yytext);
@@ -1246,10 +1247,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 276 "analize.l"
+#line 277 "analize.l"
 ECHO;
 	YY_BREAK
-#line 1253 "lex.yy.c"
+#line 1254 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2245,6 +2246,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 276 "analize.l"
+#line 277 "analize.l"
+
 
 

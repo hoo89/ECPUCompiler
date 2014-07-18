@@ -11,6 +11,8 @@
 #define MAXREFS 256
 #define MAXOBS 256
 
+enum PRINT_OPT {PRINT_HEADER, PRINT_ADDRESS, PRINT_OBJECT, PRINT_SOURCE, PRINT_OPT_END};
+
 typedef struct Instruction {
 	/* instruction name */
 	char is_name[4];
@@ -39,9 +41,11 @@ struct Label {
 	unsigned char address;
 };
 
+void set_input_file(FILE *f);
 void yyerror(const char *s);
 void calc_object_code(struct Object *ob, struct Object *is, struct Object *op);
 void set_label(char *label);
 void set_label_ref(OB *ob, char *name);
 void add_object(OB ob);
-void print_objects(void);
+void print_labels();
+void print_objects(int *opt);

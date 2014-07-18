@@ -1401,7 +1401,7 @@ yyreduce:
     {
         case 2:
 #line 86 "../src/parse.y" /* yacc.c:1646  */
-    {print_objects(); YYACCEPT;}
+    {YYACCEPT;}
 #line 1406 "parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -2028,6 +2028,7 @@ void yyerror(const char *s){
 void calc_object_code(OB *ob, OB *is, OB *op){
 	ob->word[0] = is->word[0] + op->word[0];
 	ob->word[1] = op->word[1];
+	ob->label = op->label;
 
 	if(is->require_w2 == 2 && op->require_w2 == 0){
 		yyerror("This operand require second word but does not given");
@@ -2050,12 +2051,8 @@ void set_label(char *name){
 	for(i=0;i<ltable_len;i++){
 		/* if find undefined label */
 		if(strncmp(name, ltable[i].name, MAXSTRLEN) == 0){
-			if(ltable[i].refs_len != 0){
+			if(!ltable[i].address){
 				ltable[i].address = pc;
-				for(j=0;j<ltable[i].refs_len;j++){
-					ltable[i].refs[j]->word[2] = pc;
-				}
-				ltable[i].refs_len = 0;
 				return;
 			}else{
 				yyerror("Double definition of label");
@@ -2066,7 +2063,6 @@ void set_label(char *name){
 	strncpy(ltable[ltable_len].name, name, MAXSTRLEN - 1);
 	ltable[ltable_len].name[MAXSTRLEN] = '\0';
 	ltable[ltable_len].address = pc;
-	ltable[ltable_len].refs_len = 0;
 	ltable_len++;
 }
 
@@ -2075,43 +2071,17 @@ void set_label_ref(OB *ob, char *name){
 
 	for(i=0;i<ltable_len;i++){
 		if(strncmp(name, ltable[i].name, MAXSTRLEN) == 0){
-			if(ltable[i].refs_len == 0){
-				ob->word[1] = ltable[i].address;
-			}else{
-				ltable[i].refs[ltable[i].refs_len] = ob;
-				ltable[i].refs_len++;
-			}
+			ob->label = &ltable[i];
 			return;
 		}
 	}
 
 	// if it cannot find label
 	strncpy(ltable[ltable_len].name, name, MAXSTRLEN - 1);
-	ltable[ltable_len].refs[0] = ob;
-	ltable[ltable_len].refs_len = 1;
+	ob->label = &ltable[ltable_len];
 	ltable_len++;
 	return;
 }
-/*
-unsigned char get_label_address(char *name){
-	int i;
-	for(i=0;i<ltable_len;i++){
-		if(strncmp(name, ltable[i].name, MAXSTRLEN) == 0){
-			return ltable[i].address;
-		}
-	}
-
-	// if cannot find label
-	for(i=0;i<undef_ltable_len;i++){
-		if(strncmp(name, undef_ltable[i].name, MAXSTRLEN) == 0){
-			
-		}
-	}
-	undef_ltable[undef_ltable_len].name = 
-	//yyerror("Cannot find label");
-	//printf("\t%s\n", name);
-	return 0;
-}*/
 
 void add_object(OB ob){
 	objects[objects_len++] = ob;
@@ -2122,26 +2092,44 @@ void add_object(OB ob){
 	}
 }
 
-void print_objects(void){
-	int i, a=0;
-	
-	for(i=0;i<objects_len;i++){
-		printf("%02x\t", a);
-		printf("%02x", objects[i].word[0]);
-		a++;
-
-		if(objects[i].require_w2){
-			printf(" %02x", objects[i].word[1]);
-			a++;
-		}
-
-		printf("\n");
+void print_labels(){
+	int i;
+	for(i=0;i<ltable_len;i++){
+		printf("%s: %x\n", ltable[i].name, ltable[i].address);
 	}
 }
 
-int main(void)
-{
-    yyparse();
+void print_objects(int *opt){
+	int i, a=0;
 
-    return 0;
+	if(opt[PRINT_HEADER]){
+		printf("Address\tObj. Code\tSource Code\n");
+	}
+	
+	for(i=0;i<objects_len;i++){
+		if(opt[PRINT_ADDRESS]){
+			printf("%02x\t", a);
+		}
+		if(opt[PRINT_OBJECT]){
+			printf("%02x", objects[i].word[0]);
+		}
+		a++;
+
+		if(objects[i].require_w2){
+			if(opt[PRINT_OBJECT]){
+				if(!objects[i].label){
+					printf(" %02x", objects[i].word[1]);
+				}else{
+					printf(" %02x", objects[i].label->address);
+				}
+			}
+			a++;
+		}
+
+		/*if(opt[PRINT_SOURCE]){
+
+		}*/
+
+		printf("\n");
+	}
 }
